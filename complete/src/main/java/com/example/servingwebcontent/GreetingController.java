@@ -1,5 +1,6 @@
 package com.example.servingwebcontent;
 
+import hibernate.DrinkerMethods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,7 @@ public class GreetingController {
 
 	@GetMapping("/greeting")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="aslkdfja;sldk") String name, Model model) {
-		drinkerMethods nate = new drinkerMethods();
+		DrinkerMethods nate = new DrinkerMethods();
 		String test = nate.getDrinkerNames();
 		model.addAttribute("name", test);
 		return "greeting";

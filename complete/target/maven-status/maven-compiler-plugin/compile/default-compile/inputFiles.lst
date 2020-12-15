@@ -1,6 +1,6 @@
-/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/com/example/servingwebcontent/beers.java
-/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/com/example/servingwebcontent/drinkerMethods.java
+/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/hibernate/DrinkerMethods.java
 /home/nathan/IdeaProjects/BarWeb/complete/src/main/java/com/example/servingwebcontent/ServingWebContentApplication.java
 /home/nathan/IdeaProjects/BarWeb/complete/src/main/java/com/example/servingwebcontent/GreetingController.java
-/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/com/example/servingwebcontent/poolGames.java
-/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/com/example/servingwebcontent/drinkers.java
+/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/hibernate/Beers.java
+/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/hibernate/PoolGames.java
+/home/nathan/IdeaProjects/BarWeb/complete/src/main/java/hibernate/Drinkers.java

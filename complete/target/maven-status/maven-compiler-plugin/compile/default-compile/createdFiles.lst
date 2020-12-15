@@ -1,6 +1,6 @@
+hibernate/Drinkers.class
+hibernate/PoolGames.class
 com/example/servingwebcontent/ServingWebContentApplication.class
-com/example/servingwebcontent/drinkerMethods.class
-com/example/servingwebcontent/drinkers.class
-com/example/servingwebcontent/poolGames.class
+hibernate/DrinkerMethods.class
 com/example/servingwebcontent/GreetingController.class
-com/example/servingwebcontent/beers.class
+hibernate/Beers.class

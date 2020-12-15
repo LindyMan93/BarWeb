@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
-        <!-- <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property> -->
+<!--        <property name="connection.driver_class">org.springframework.jdbc.core.</property>-->
         <property name="connection.url">jdbc:mysql://localhost:3306/barWeb</property>
         <property name="connection.username">root</property>
         <property name="connection.password">Nrl705535</property>
@@ -15,11 +15,11 @@
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
         <!-- Validate the database schema on startup -->
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">none</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="com.example.servingwebcontent.drinkers"/>
-        <mapping class="com.example.servingwebcontent.beers"/>
-        <mapping class="com.example.servingwebcontent.poolGames"/>
+        <mapping class="hibernate.Drinkers"/>
+        <mapping class="hibernate.Beers"/>
+        <mapping class="hibernate.PoolGames"/>
     </session-factory>
 </hibernate-configuration>
