@@ -13,7 +13,7 @@ public class Drinkers implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int userId;
 
     @Column(name = "firstName")

@@ -7,7 +7,7 @@ import java.sql.Date;
 @Table(name = "PoolGames")
 public class PoolGames {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int gameId;
 
     @Column(name = "shooterOne")

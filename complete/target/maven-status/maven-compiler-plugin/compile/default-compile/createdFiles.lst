@@ -1,6 +1,9 @@
 hibernate/Drinkers.class
 hibernate/PoolGames.class
 com/example/servingwebcontent/ServingWebContentApplication.class
+hibernate/BarDAO.class
 hibernate/DrinkerMethods.class
+hibernate/PoolGameMethods.class
 com/example/servingwebcontent/GreetingController.class
+hibernate/BeerMethods.class
 hibernate/Beers.class

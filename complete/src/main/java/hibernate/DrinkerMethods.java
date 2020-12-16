@@ -2,7 +2,7 @@ package hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -13,21 +13,49 @@ public class DrinkerMethods {
 
     }
 
-    public String getDrinkerNames() {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
+    public List<Drinkers> getDrinkers() {
+        Session session = BarDAO.openCurrentSession();
+        return session.createQuery("from Drinkers").list();
+    }
 
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        List<Drinkers> drinkers;
+    public boolean addDrinker(String firstName, String lastName) {
 
-        drinkers = session.createQuery("from Drinkers").list();
+        Drinkers drinker = new Drinkers();
+        drinker.setFirstName(firstName);
+        drinker.setLastName(lastName);
+        drinker.setCreateDate(BarDAO.getCurrentSqlDate());
 
-        session.getTransaction().commit();
-        session.close();
-        for(Drinkers drinker : drinkers) {
-            System.out.println(drinker.toString());
+        Session session = BarDAO.openCurrentSession();
+        Transaction trans = session.getTransaction();
+
+        if ( trans == null) {
+            trans = session.beginTransaction();
+        } else {
+            trans.begin();
         }
 
-        return drinkers.get(0).lastName;
+        session.save("Drinkers",drinker);
+        trans.commit();
+        System.out.println(drinker.toString());
+        return true;
+
+    }
+
+    public boolean removeDrinkerByID(int id) {
+        Session session = BarDAO.openCurrentSession();
+        Transaction trans = session.getTransaction();
+
+        if ( trans == null) {
+            trans = session.beginTransaction();
+        } else {
+            trans.begin();
+        }
+        Drinkers drinker = session.get(hibernate.Drinkers.class, id);
+
+        session.remove(drinker);
+
+        trans.commit();
+        System.out.println(drinker.toString());
+        return true;
     }
 }
