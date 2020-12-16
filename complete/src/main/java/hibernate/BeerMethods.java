@@ -3,7 +3,9 @@ package hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BeerMethods {
     public BeerMethods() {
@@ -13,6 +15,18 @@ public class BeerMethods {
     public List<Beers> getBeers() {
         Session session = BarDAO.openCurrentSession();
         return session.createQuery("from Beers").list();
+    }
+
+    public Map<String, Integer> getNumberOfBeersPerDrinker() {
+        List<Beers> allBeers = getBeers();
+        HashMap<String, Integer> beerMap = new HashMap<>();
+        DrinkerMethods drinkerMethods = new DrinkerMethods();
+        for (Beers beer : allBeers) {
+            String drinkerName = drinkerMethods.getDrinkerNameById(beer.userId);
+            Integer count = beerMap.getOrDefault(drinkerName, 0);
+            beerMap.put(drinkerName, count + 1);
+        }
+        return beerMap;
     }
 
     public boolean addBeer(int userId) {

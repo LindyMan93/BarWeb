@@ -1,0 +1,7 @@
+{
+  "timestamp": "2020-12-16T22:56:13.677+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "",
+  "path": "/greeting.json"
+}

@@ -1,0 +1,18 @@
+GET http://localhost:8080/greeting.json?id=1
+
+<> 2020-12-16T175643.200.json
+
+###
+
+GET http://localhost:8080/greeting.json$id=1
+
+<> 2020-12-16T175631.404.json
+
+###
+
+GET http://localhost:8080/greeting.json
+
+<> 2020-12-16T175614.500.json
+
+###
+

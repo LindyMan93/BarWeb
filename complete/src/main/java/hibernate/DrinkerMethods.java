@@ -41,7 +41,22 @@ public class DrinkerMethods {
 
     }
 
-    public boolean removeDrinkerByID(int id) {
+    public String getDrinkerNameById(int id) {
+        Session session = BarDAO.openCurrentSession();
+        Transaction trans = session.getTransaction();
+
+        if ( trans == null) {
+            trans = session.beginTransaction();
+        } else {
+            trans.begin();
+        }
+        Drinkers drinker = session.get(hibernate.Drinkers.class, id);
+        trans.commit();
+        System.out.println(drinker.toString());
+        return drinker.firstName + " " + drinker.lastName;
+    }
+
+    public boolean removeDrinkerById(int id) {
         Session session = BarDAO.openCurrentSession();
         Transaction trans = session.getTransaction();
 
