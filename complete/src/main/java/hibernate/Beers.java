@@ -11,10 +11,10 @@ public class Beers {
     private int beerId;
 
     @Column(name = "userId")
-    int userId;
+    private int userId;
 
     @Column(name = "dateDrank")
-    Date dateDrank;
+    private Date dateDrank;
 
     public int getBeerId() {
         return beerId;

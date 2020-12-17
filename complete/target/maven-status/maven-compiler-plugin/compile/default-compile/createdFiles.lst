@@ -4,6 +4,6 @@ com/example/servingwebcontent/ServingWebContentApplication.class
 hibernate/BarDAO.class
 hibernate/DrinkerMethods.class
 hibernate/PoolGameMethods.class
-com/example/servingwebcontent/GreetingController.class
 hibernate/BeerMethods.class
+com/example/servingwebcontent/HomeController.class
 hibernate/Beers.class

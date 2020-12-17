@@ -42,11 +42,18 @@
     </nav>
 
     <!-- Page Content  -->
-    <div id="content" class="p-4 p-md-5 pt-5">
+    <div id="BeerGraph" class="p-4 p-md-5 pt-5">
         <h2 class="mb-4">Welcome to the Bar</h2>
-        <h4 class="mb-4">Top Drinkers</h4>
+        <h4 class="mb-4">Drinkers</h4>
         <canvas id="myChart"></canvas>
         <p></p>
+    </div>
+    <div id="" class="p-4 p-md-5 pt-5">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br><br>
+        <button ng-click="addDrinker(fname, lname)">Add Drinker</button>
     </div>
 </div>
 </body>

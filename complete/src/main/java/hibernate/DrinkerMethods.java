@@ -53,7 +53,7 @@ public class DrinkerMethods {
         Drinkers drinker = session.get(hibernate.Drinkers.class, id);
         trans.commit();
         System.out.println(drinker.toString());
-        return drinker.firstName + " " + drinker.lastName;
+        return drinker.getFirstName() + " " + drinker.getLastName();
     }
 
     public boolean removeDrinkerById(int id) {

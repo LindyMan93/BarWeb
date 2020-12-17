@@ -18,13 +18,39 @@
             $('#sidebar').toggleClass('active');
         });
 
+        $scope.addDrinker = function() {
+            let fname = document.getElementById('fname').value;
+            let lname = document.getElementById('lname').value;
+            $http.post("/addDrinker.json?firstName=" + fname + "&lastName=" + lname).then(function(response){
+                console.log("Added Drinker");
+            });
+        };
+
+        function generateRandomRGBColor() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+
+        };
+
+        function randomColorList(colorAmount) {
+            var colorList = "";
+            for(var i = 0; i < colorAmount; i++) {
+                if (i==0) {
+                    colorList = colorList + "'" + generateRandomRGBColor() + "'";
+                } else {
+                    colorList = colorList + ", '" + generateRandomRGBColor() + "'";
+                }
+            }
+            return colorList;
+        };
+
         // trying to make chart
         var ctx = document.getElementById('myChart');
         let beerMap = new Map();
-        $http.get('/greeting.json?id=1').then(function(response) {
+        $http.get('/getBeersOfDrinkers.json').then(function(response) {
             beerMap = response.data;
-            console.log(Object.keys(beerMap));
-            console.log(Object.values(beerMap));
+            var backgroundColorList = randomColorList(Object.keys(beerMap).length);
+            var borderColorList = randomColorList(Object.keys(beerMap).length);
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -32,14 +58,8 @@
                     datasets: [{
                         label: '# of beers',
                         data: Object.values(beerMap),
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                        ],
+                        backgroundColor: [backgroundColorList],
+                        borderColor: [borderColorList],
                         borderWidth: 1
                     }]
                 },

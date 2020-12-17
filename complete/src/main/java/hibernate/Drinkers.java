@@ -17,13 +17,13 @@ public class Drinkers implements Serializable {
     private int userId;
 
     @Column(name = "firstName")
-    String firstName;
+    private String firstName;
 
     @Column(name = "lastName")
-    String lastName;
+    private String lastName;
 
     @Column(name = "createdDate")
-    Date createDate;
+    private Date createDate;
 
     public int getUserId() {
         return userId;

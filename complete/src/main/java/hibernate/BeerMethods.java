@@ -2,6 +2,7 @@ package hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +18,31 @@ public class BeerMethods {
         return session.createQuery("from Beers").list();
     }
 
-    public Map<String, Integer> getNumberOfBeersPerDrinker() {
-        List<Beers> allBeers = getBeers();
+    public int getNumberOfBeersPerDrinker(int drinkerId) {
+        Session session = BarDAO.openCurrentSession();
+        Transaction trans = session.getTransaction();
+
+        if ( trans == null) {
+            trans = session.beginTransaction();
+        } else {
+            trans.begin();
+        }
+        Query query = session.createQuery("select count(*) from Beers where userId = :drinkerId");
+        query.setParameter("drinkerId", drinkerId);
+        Long longCount = (Long) query.getSingleResult();
+        int count = longCount.intValue();
+        trans.commit();
+        return count;
+    }
+
+    public Map<String, Integer> getNumberOfBeersEachDrinker() {
         HashMap<String, Integer> beerMap = new HashMap<>();
         DrinkerMethods drinkerMethods = new DrinkerMethods();
-        for (Beers beer : allBeers) {
-            String drinkerName = drinkerMethods.getDrinkerNameById(beer.userId);
-            Integer count = beerMap.getOrDefault(drinkerName, 0);
-            beerMap.put(drinkerName, count + 1);
+        List<Drinkers> drinkers = drinkerMethods.getDrinkers();
+        for (Drinkers drinker : drinkers) {
+            Integer count = getNumberOfBeersPerDrinker(drinker.getUserId());
+            String drinkerFullName = drinker.getFirstName() + " " + drinker.getLastName();
+            beerMap.put(drinkerFullName, count);
         }
         return beerMap;
     }
