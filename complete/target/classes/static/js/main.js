@@ -18,6 +18,13 @@
             $('#sidebar').toggleClass('active');
         });
 
+        $scope.addBeer = function() {
+            let id = document.getElementById('drinkers').value;
+            $http.post('/addBeer.json?userId=' + id).then(function(response){
+                console.log("Added Beer");
+            })
+        }
+
         $scope.addDrinker = function() {
             let fname = document.getElementById('fname').value;
             let lname = document.getElementById('lname').value;
@@ -44,6 +51,14 @@
             return colorList;
         };
 
+        var drinkerSelect = document.getElementById('drinkers');
+        let nameMap = new Map();
+        $http.get('/getAllDrinkersNamesAndID.json').then(function(response) {
+           nameMap = response.data;
+           for (const [key, value] of Object.entries(nameMap)) {
+               drinkerSelect.options[drinkerSelect.options.length] = new Option(key, value);
+           }
+        });
         // trying to make chart
         var ctx = document.getElementById('myChart');
         let beerMap = new Map();

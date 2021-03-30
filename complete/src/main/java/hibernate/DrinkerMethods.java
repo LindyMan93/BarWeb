@@ -4,13 +4,26 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DrinkerMethods {
     SessionFactory sessionFactory;
 
     public DrinkerMethods() {
 
+    }
+
+    public Map<String, Integer> getAllDrinkersAndID() {
+        HashMap<String, Integer> nameMap = new HashMap<>();
+        List<Drinkers> drinkers = getDrinkers();
+        for (Drinkers drinker : drinkers) {
+            Integer id = drinker.getUserId();
+            String drinkerFullName = drinker.getFirstName() + " " + drinker.getLastName();
+            nameMap.put(drinkerFullName, id);
+        }
+        return nameMap;
     }
 
     public List<Drinkers> getDrinkers() {

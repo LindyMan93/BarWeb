@@ -13,6 +13,13 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
+	// Main controller for the methods
+	@GetMapping("/getAllDrinkersNamesAndID.json")
+	public @ResponseBody Map<String, Integer> getAllDrinkersAndID(){
+		DrinkerMethods drinkerMethods = new DrinkerMethods();
+		return drinkerMethods.getAllDrinkersAndID();
+	}
+
 	@GetMapping("/getAllDrinkersNames.json")
 	public @ResponseBody List<Drinkers> getAllDrinkers(){
 		DrinkerMethods drinkerMethods = new DrinkerMethods();
